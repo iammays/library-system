@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import getBackendData from './services/api';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Signup from './reactfiles/Signup';
+import Login from './reactfiles/Login';
+import Profile from './reactfiles/Profile';
 
 function App() {
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    getBackendData().then(data => setData(data));
-  }, []);
-
   return (
-    <div>
-      <h1>Library System</h1>
-      <p>{data}</p>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
