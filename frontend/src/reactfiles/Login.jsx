@@ -1,6 +1,9 @@
+// src/reactfiles/Login.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../cssfiles/Auth.css';
+import logo from '../images/logo.png';
+import books from '../images/books.png';
 
 function Login() {
   const [form, setForm] = useState({
@@ -49,21 +52,40 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email or Username:</label>
-          <input type="text" name="identifier" value={form.identifier} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" name="password" value={form.password} onChange={handleChange} required />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {message && <p>{message}</p>}
-      <p>Don't have an account? <Link to="/signup">Signup</Link></p>
+    <div className="auth-container">
+      <div className="auth-image">
+        <img src={books} alt="Books" />
+      </div>
+      <div className="auth-form-container">
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <img src={logo} alt="Logo" />
+          <div className="form-group">
+            <label htmlFor="identifier">E-mail or Username</label>
+            <input
+              type="text"
+              id="identifier"
+              name="identifier"
+              value={form.identifier}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+          {message && <p>{message}</p>}
+          <p>Don't have an account? <Link to="/signup">Signup</Link></p>
+        </form>
+      </div>
     </div>
   );
 }

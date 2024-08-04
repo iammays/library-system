@@ -1,6 +1,9 @@
+// src/reactfiles/Signup.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../cssfiles/Auth.css';
+import logo from '../images/logo.png';
+import books from '../images/books.png';
 
 function Signup() {
   const [form, setForm] = useState({
@@ -51,28 +54,62 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input type="text" name="name" value={form.name} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Username:</label>
-          <input type="text" name="username" value={form.username} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={form.email} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" name="password" value={form.password} onChange={handleChange} required />
-        </div>
-        <button type="submit">Signup</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="auth-container">
+      <div className="auth-image">
+        <img src={books} alt="Books" />
+      </div>
+      <div className="auth-form-container">
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <img src={logo} alt="Logo" />
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={form.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Signup</button>
+          {message && <p>{message}</p>}
+          <p>Already have an account? <Link to="/login">LogIn</Link></p>
+        </form>
+      </div>
     </div>
   );
 }
