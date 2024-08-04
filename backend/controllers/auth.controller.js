@@ -6,14 +6,15 @@ const config = require("../config/auth.config");
 
 exports.signup = async (req, res) => {
   try {
+    // Creating a new librarian instance with hashed password and profile picture
     const librarian = new Librarian({
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
-      profile_pic: req.body.profile_pic || 'frontend/src/images/profile.jpg' // Handle profile pic
+      profile_pic: req.body.profile_pic || 'frontend/src/images/profile.jpg' 
     });
-
+// Saving the new librarian to the database
     await librarian.save();
     res.status(201).send({ message: "User was registered successfully!" });
   } catch (err) {
@@ -44,6 +45,8 @@ exports.signin = async (req, res) => {
       });
     }
 
+
+// Creating a JWT token valid for 24 hours
     const token = jwt.sign({ id: librarian.id }, config.secret, {
       expiresIn: 86400 // 24 hours
     });

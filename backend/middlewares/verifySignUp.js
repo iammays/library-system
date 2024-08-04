@@ -1,23 +1,20 @@
 const db = require("../models");
 const Librarian = db.librarian;
 
-checkDuplicateUsernameOrEmail = async (req, res, next) => {
+const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   try {
-    // Username
-    const librarianByUsername = await Librarian.findOne({
-      username: req.body.username
-    }).exec();
+    const { username, email } = req.body;
+    const userId = req.userId; // Assuming you have userId set in req.userId via some authentication middleware
 
-    if (librarianByUsername) {
+    // Check if username already exists and doesn't belong to the current user
+    const librarianByUsername = await Librarian.findOne({ username }).exec();
+    if (librarianByUsername && librarianByUsername._id.toString() !== userId) {
       return res.status(400).send({ message: "Failed! Username is already in use!" });
     }
 
-    // Email
-    const librarianByEmail = await Librarian.findOne({
-      email: req.body.email
-    }).exec();
-
-    if (librarianByEmail) {
+    // Check if email already exists and doesn't belong to the current user
+    const librarianByEmail = await Librarian.findOne({ email }).exec();
+    if (librarianByEmail && librarianByEmail._id.toString() !== userId) {
       return res.status(400).send({ message: "Failed! Email is already in use!" });
     }
 

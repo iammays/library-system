@@ -131,30 +131,35 @@ function Profile() {
             <button onClick={() => setEditMode(true)} className="edit-button">Edit</button>
 
             {editMode && (
-              <form onSubmit={handleSubmit} className="edit-form">
-                <div>
-                  <label>Profile Picture:</label>
-                  <input type="file" name="profile_pic" onChange={handleFileChange} />
+              <div className="modal-overlay">
+                <div className="modal">
+                  <form onSubmit={handleSubmit} className="form">
+                    {/* <img src={logo} alt="Logo" /> */}
+                    <div className="form-group">
+                      <label>Profile Picture:</label>
+                      <input type="file" name="profile_pic" onChange={handleFileChange} />
+                    </div>
+                    <div className="form-group">
+                      <label>Name:</label>
+                      <input type="text" name="name" value={form.name} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                      <label>Username:</label>
+                      <input type="text" name="username" value={form.username} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                      <label>Email:</label>
+                      <input type="email" name="email" value={form.email} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                      <label>Password:</label>
+                      <input type="password" name="password" value={form.password} onChange={handleChange} />
+                    </div>
+                    <button type="submit" className="save-button">Save</button>
+                    <button type="button" onClick={() => setEditMode(false)} className="cancel-button">Cancel</button>
+                  </form>
                 </div>
-                <div>
-                  <label>Name:</label>
-                  <input type="text" name="name" value={form.name} onChange={handleChange} required />
-                </div>
-                <div>
-                  <label>Username:</label>
-                  <input type="text" name="username" value={form.username} onChange={handleChange} required />
-                </div>
-                <div>
-                  <label>Email:</label>
-                  <input type="email" name="email" value={form.email} onChange={handleChange} required />
-                </div>
-                <div>
-                  <label>Password:</label>
-                  <input type="password" name="password" value={form.password} onChange={handleChange} />
-                </div>
-                <button type="submit" className="save-button">Save</button>
-                <button type="button" onClick={() => setEditMode(false)} className="cancel-button">Cancel</button>
-              </form>
+              </div>
             )}
           </div>
         ) : (

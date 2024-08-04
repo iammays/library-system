@@ -1,4 +1,4 @@
-// backend/controllers/user.controller.js
+
 const db = require("../models");
 const Librarian = db.librarian;
 const bcrypt = require("bcryptjs");

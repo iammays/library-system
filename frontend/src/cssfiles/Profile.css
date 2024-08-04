@@ -1,4 +1,3 @@
-/* src/cssfiles/Profile.css */
 .navbar {
   background-color: white;
   display: flex;
@@ -21,12 +20,13 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  transition: color 0.3s, transform 0.3s;
 }
 
-.profile-button:active {
+.profile-button:hover {
   color: #9bb6e0;
-  font-size: 1.2rem;
+  transform: scale(1.1);
 }
 
 .right-section {
@@ -37,112 +37,183 @@
 .right-section img {
   height: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .user-info {
   margin-left: 1rem;
-  text-align: left;
   cursor: pointer;
-  position: relative;
 }
 
-.user-info div {
-  margin-bottom: 0.2rem;
+.username {
+  font-size: 0.8rem;
+  color: gray;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  width: 150px;
-  padding: 0.5rem;
-  text-align: left;
+  right: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
   background: none;
   border: none;
-  padding: 0.5rem 1rem;
   cursor: pointer;
-  width: 100%;
   text-align: left;
 }
 
 .dropdown-menu button:hover {
-  background-color: #f0f0f0;
+  background: #f0f0f0;
 }
 
 .profile-container {
+  text-align: center;
   padding: 2rem;
 }
 
 .profile-container img {
-  height: 150px;
   border-radius: 50%;
+  height: 150px;
+  width: 150px;
 }
 
-.profile-container h2,
-.profile-container p {
-  text-align: center;
+.edit-button,
+.save-button,
+.cancel-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .edit-button {
-  display: block;
-  margin: 1rem auto;
-  background-color: #1d1e20;
+  background-color: #9bb6e0;
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #5a87c0;
+  transform: scale(1.05);
 }
 
 .edit-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 2rem auto;
+  margin-top: 1rem;
 }
 
 .edit-form div {
   margin-bottom: 1rem;
+  text-align: left;
+  width: 100%;
+  max-width: 450px; /* Ensure the div doesn't overflow */
 }
 
 .edit-form label {
   display: block;
   margin-bottom: 0.5rem;
+  color: #ccc; /* Light grey color */
+  font-size: 0.9rem;
 }
 
-.edit-form input[type="text"],
-.edit-form input[type="email"],
-.edit-form input[type="password"],
-.edit-form input[type="file"] {
+.edit-form input {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
+  padding: 1rem; /* Increased padding for taller inputs */
+  border: 1px solid #ccc;
   border-radius: 4px;
+  color: #1d1e20;
+  max-width: 450px; /* Set max-width for input */
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
 }
 
-.save-button,
-.cancel-button {
-  background-color: #1d1e20;
+.save-button {
+  background-color: #4caf50;
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  margin: 0.5rem;
 }
 
-.save-button:hover,
+.save-button:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
 .cancel-button:hover {
-  background-color: #9bb6e0;
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+.modal {
+  background: white;
+  padding: 1rem; /* Adjust as needed */
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px; /* Width of the modal */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 90vh; /* Limit the height */
+  overflow-y: auto; /* Add scroll if content overflows vertically */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Ensure form fits inside modal */
+}
+
+.auth-form img {
+  width: 100px; /* Smaller logo size */
+  margin-bottom: 0.75rem;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 1rem;
+  max-width: 450px; /* Ensure the form group doesn't overflow */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1d1e20;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #1d1e20;
+  max-width: 450px; /* Set max-width for input */
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
