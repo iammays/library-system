@@ -10,7 +10,8 @@ exports.signup = async (req, res) => {
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 8)
+      password: bcrypt.hashSync(req.body.password, 8),
+      profile_pic: req.body.profile_pic || 'frontend/src/images/profile.jpg' // Handle profile pic
     });
 
     await librarian.save();

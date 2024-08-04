@@ -1,0 +1,148 @@
+/* src/cssfiles/Profile.css */
+.navbar {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.left-section img {
+  height: 40px;
+}
+
+.profile-button {
+  color: #1d1e20;
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.profile-button:active {
+  color: #9bb6e0;
+  font-size: 1.2rem;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.right-section img {
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user-info {
+  margin-left: 1rem;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-info div {
+  margin-bottom: 0.2rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 150px;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}
+
+.profile-container {
+  padding: 2rem;
+}
+
+.profile-container img {
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profile-container h2,
+.profile-container p {
+  text-align: center;
+}
+
+.edit-button {
+  display: block;
+  margin: 1rem auto;
+  background-color: #1d1e20;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.edit-form div {
+  margin-bottom: 1rem;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form input[type="password"],
+.edit-form input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.save-button,
+.cancel-button {
+  background-color: #1d1e20;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  background-color: #9bb6e0;
+}

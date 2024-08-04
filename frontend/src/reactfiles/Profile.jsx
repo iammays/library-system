@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logout from './Logout';
+import defaultProfilePic from '../images/profile.jpg';
+import logo from '../images/logo.png';
+import '../cssfiles/Profile.css';
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -9,8 +11,10 @@ function Profile() {
     name: '',
     email: '',
     username: '',
-    password: ''
+    password: '',
+    profile_pic: ''
   });
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,7 +40,8 @@ function Profile() {
             name: data.name,
             email: data.email,
             username: data.username,
-            password: ''
+            password: '',
+            profile_pic: data.profile_pic || defaultProfilePic
           });
         } else {
           console.error('Error fetching profile:', data.message);
@@ -57,6 +62,13 @@ function Profile() {
     setForm({
       ...form,
       [name]: value
+    });
+  };
+
+  const handleFileChange = (e) => {
+    setForm({
+      ...form,
+      profile_pic: URL.createObjectURL(e.target.files[0])
     });
   };
 
@@ -84,43 +96,71 @@ function Profile() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/login');
+  };
+
   return (
     <div>
-      <h2>Profile</h2>
-      <Logout />
-      {user ? (
-        <div>
-          <p>Name: {user.name}</p>
-          <p>Username: <span style={{ fontSize: 'smaller' }}>@{user.username}</span></p>
-          <p>Email: {user.email}</p>
-          <button onClick={() => setEditMode(true)}>Edit</button>
-
-          {editMode && (
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label>Name:</label>
-                <input type="text" name="name" value={form.name} onChange={handleChange} required />
-              </div>
-              <div>
-                <label>Username:</label>
-                <input type="text" name="username" value={form.username} onChange={handleChange} required />
-              </div>
-              <div>
-                <label>Email:</label>
-                <input type="email" name="email" value={form.email} onChange={handleChange} required />
-              </div>
-              <div>
-                <label>Password:</label>
-                <input type="password" name="password" value={form.password} onChange={handleChange} />
-              </div>
-              <button type="submit">Save</button>
-              <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
-            </form>
-          )}
+      <nav className="navbar">
+        <div className="left-section">
+          <img src={logo} alt="Logo" />
+          <button className="profile-button">Profile</button>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+        <div className="right-section">
+          <img src={user ? user.profile_pic : defaultProfilePic} alt="Profile" />
+          <div className="user-info" onClick={() => setDropdownVisible(!dropdownVisible)}>
+            <div>{user && user.name}</div>
+            <div className="username">@{user && user.username}</div>
+            {dropdownVisible && (
+              <div className="dropdown-menu">
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </nav>
+      <div className="profile-container">
+        {user ? (
+          <div>
+            <img src={user.profile_pic} alt="Profile" />
+            <h2>{user.name}</h2>
+            <p>@{user.username}</p>
+            <p>{user.email}</p>
+            <button onClick={() => setEditMode(true)} className="edit-button">Edit</button>
+
+            {editMode && (
+              <form onSubmit={handleSubmit} className="edit-form">
+                <div>
+                  <label>Profile Picture:</label>
+                  <input type="file" name="profile_pic" onChange={handleFileChange} />
+                </div>
+                <div>
+                  <label>Name:</label>
+                  <input type="text" name="name" value={form.name} onChange={handleChange} required />
+                </div>
+                <div>
+                  <label>Username:</label>
+                  <input type="text" name="username" value={form.username} onChange={handleChange} required />
+                </div>
+                <div>
+                  <label>Email:</label>
+                  <input type="email" name="email" value={form.email} onChange={handleChange} required />
+                </div>
+                <div>
+                  <label>Password:</label>
+                  <input type="password" name="password" value={form.password} onChange={handleChange} />
+                </div>
+                <button type="submit" className="save-button">Save</button>
+                <button type="button" onClick={() => setEditMode(false)} className="cancel-button">Cancel</button>
+              </form>
+            )}
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 }
