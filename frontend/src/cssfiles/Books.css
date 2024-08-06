@@ -1,0 +1,137 @@
+/* src/cssfiles/Books.css */
+
+.books-page {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .search-bar input {
+    padding: 0.75rem;
+    margin-right: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+  }
+  
+  .search-bar select {
+    padding: 0.75rem;
+    margin-right: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-book-button {
+    padding: 0.75rem 1rem;
+    background-color: #9bb6e0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-book-button:hover {
+    background-color: #829cc0;
+  }
+  
+  .books-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .books-table th, .books-table td {
+    padding: 1rem;
+    border: 1px solid #ccc;
+  }
+  
+  .books-table th {
+    background-color: #f4f4f4;
+  }
+  
+  /* New CSS for cover image */
+  .book-cover {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #1d1e20;
+    font-size: 0.9rem;
+  }
+  
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #1d1e20;
+  }
+  
+  button[type="submit"], button[type="button"] {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #388e3c;
+  }
+  
+  button[type="button"] {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #d32f2f;
+  }
+  

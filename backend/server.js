@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
@@ -45,6 +46,9 @@ app.use('/api', loginRoute);
 
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
+require('./routes/book.routes')(app);
+require('./routes/student.routes')(app);
+require('./routes/category.routes')(app); // Category routes
 
 const PORT = process.env.PORT || port;
 app.listen(PORT, () => {

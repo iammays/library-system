@@ -1,7 +1,7 @@
+// src/reactfiles/Profile.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultProfilePic from '../images/profile.jpg';
-import logo from '../images/logo.png';
 import '../cssfiles/Profile.css';
 
 function Profile() {
@@ -14,7 +14,7 @@ function Profile() {
     password: '',
     profile_pic: ''
   });
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -96,31 +96,10 @@ function Profile() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    navigate('/login');
-  };
+  
 
   return (
     <div>
-      <nav className="navbar">
-        <div className="left-section">
-          <img src={logo} alt="Logo" />
-          <button className="profile-button">Profile</button>
-        </div>
-        <div className="right-section">
-          <img src={user ? user.profile_pic : defaultProfilePic} alt="Profile" />
-          <div className="user-info" onClick={() => setDropdownVisible(!dropdownVisible)}>
-            <div>{user && user.name}</div>
-            <div className="username">@{user && user.username}</div>
-            {dropdownVisible && (
-              <div className="dropdown-menu">
-                <button onClick={handleLogout}>Logout</button>
-              </div>
-            )}
-          </div>
-        </div>
-      </nav>
       <div className="profile-container">
         {user ? (
           <div>
@@ -134,7 +113,6 @@ function Profile() {
               <div className="modal-overlay">
                 <div className="modal">
                   <form onSubmit={handleSubmit} className="form">
-                    {/* <img src={logo} alt="Logo" /> */}
                     <div className="form-group">
                       <label>Profile Picture:</label>
                       <input type="file" name="profile_pic" onChange={handleFileChange} />
