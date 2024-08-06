@@ -1,6 +1,7 @@
-// src/reactfiles/Navbar.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { CIcon } from '@coreui/icons-react';
+import { cilAccountLogout } from '@coreui/icons';
 import defaultProfilePic from '../images/profile.jpg';
 import logo from '../images/logo.png';
 import '../cssfiles/Navbar.css';
@@ -59,15 +60,11 @@ function Navbar() {
       </div>
       <div className="right-section">
         <img src={user ? user.profile_pic : defaultProfilePic} alt="Profile" />
-        <div className="user-info" onClick={() => setDropdownVisible(!dropdownVisible)}>
+        <div className="user-info">
           <div>{user && user.name}</div>
           <div className="username">@{user && user.username}</div>
-          {dropdownVisible && (
-            <div className="dropdown-menu">
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          )}
         </div>
+        <CIcon icon={cilAccountLogout} className="logout-icon" size="sm" onClick={handleLogout} />
       </div>
     </nav>
   );

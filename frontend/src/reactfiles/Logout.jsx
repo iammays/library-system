@@ -13,6 +13,6 @@ function Logout() {
   return (
     <button onClick={handleLogout}>Logout</button>
   );
-}
+}z
 
 export default Logout;

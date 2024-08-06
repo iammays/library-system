@@ -18,6 +18,10 @@ function Students() {
       return;
     }
 
+    fetchStudents(token);
+  }, [navigate]);
+
+  const fetchStudents = (token) => {
     fetch('/api/students', {
       headers: {
         'Authorization': 'Bearer ' + token
@@ -26,7 +30,7 @@ function Students() {
     .then(response => response.json())
     .then(data => setStudents(data))
     .catch(error => console.error('Error fetching students:', error));
-  }, [navigate]);
+  };
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -68,6 +72,7 @@ function Students() {
       setStudents([...students, data]);
       setShowModal(false);
       setNewStudent({ name: '', studentId: '' });
+      fetchStudents(token); // Re-fetch students to ensure the list is up-to-date
     })
     .catch(error => {
       setErrorMessage(error.message);

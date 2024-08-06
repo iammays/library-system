@@ -13,14 +13,14 @@
   
   .add-category-button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #9bb6e0;
     color: white;
     border: none;
     cursor: pointer;
   }
   
   .add-category-button:hover {
-    background-color: #45a049;
+    background-color: #829cc0;
   }
   
   .categories-table {

@@ -27,6 +27,14 @@
     transition: color 0.3s, transform 0.3s;
     text-decoration: none; /* Remove underline for links */
   }
+
+  .logout-icon {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    width: 16px; /* Adjust the width as needed */
+    height: 16px; /* Adjust the height as needed */
+  }
+  
   
   .profile-button:hover,
   .books-button:hover, 
