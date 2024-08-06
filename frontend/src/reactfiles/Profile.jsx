@@ -1,4 +1,3 @@
-// src/reactfiles/Profile.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultProfilePic from '../images/profile.jpg';
@@ -14,6 +13,7 @@ function Profile() {
     password: '',
     profile_pic: ''
   });
+  const [profilePic, setProfilePic] = useState(null);
   
   const navigate = useNavigate();
 
@@ -66,22 +66,28 @@ function Profile() {
   };
 
   const handleFileChange = (e) => {
-    setForm({
-      ...form,
-      profile_pic: URL.createObjectURL(e.target.files[0])
-    });
+    setProfilePic(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append('name', form.name);
+    formData.append('email', form.email);
+    formData.append('username', form.username);
+    formData.append('password', form.password);
+    if (profilePic) {
+      formData.append('profile_pic', profilePic);
+    }
+
     try {
       const response = await fetch('/api/user/profile', {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         },
-        body: JSON.stringify(form)
+        body: formData
       });
 
       const data = await response.json();
@@ -96,14 +102,12 @@ function Profile() {
     }
   };
 
-  
-
   return (
     <div>
       <div className="profile-container">
         {user ? (
           <div>
-            <img src={user.profile_pic} alt="Profile" />
+            <img src={user.profile_pic || defaultProfilePic} alt="Profile" />
             <h2>{user.name}</h2>
             <p>@{user.username}</p>
             <p>{user.email}</p>
@@ -112,7 +116,7 @@ function Profile() {
             {editMode && (
               <div className="modal-overlay">
                 <div className="modal">
-                  <form onSubmit={handleSubmit} className="form">
+                  <form onSubmit={handleSubmit} className="form" encType="multipart/form-data">
                     <div className="form-group">
                       <label>Profile Picture:</label>
                       <input type="file" name="profile_pic" onChange={handleFileChange} />

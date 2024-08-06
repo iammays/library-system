@@ -1,5 +1,7 @@
 const { authJwt } = require('../middlewares');
 const controller = require('../controllers/user.controller');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); // Set your destination for uploaded files
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -14,5 +16,7 @@ module.exports = function(app) {
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
   app.get("/api/user/profile", [authJwt.verifyToken], controller.getProfile);
-  app.put("/api/user/profile", [authJwt.verifyToken], controller.updateProfile);
+
+  // Ensure multer is used for file uploads
+  app.put("/api/user/profile", [authJwt.verifyToken, upload.single('profile_pic')], controller.updateProfile);
 };
