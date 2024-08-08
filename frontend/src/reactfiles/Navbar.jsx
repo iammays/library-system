@@ -53,10 +53,13 @@ function Navbar() {
     <nav className="navbar">
       <div className="left-section">
         <img src={logo} alt="Logo" />
-        <Link to="/profile" className="profile-button">Profile</Link>
-        <Link to="/books" className="books-button">Books</Link>
-        <Link to="/categories" className="categories-button">Categories</Link>
-        <Link to="/students" className="students-button">Students</Link>
+        <Link to="/profile" className="nav-button">Profile</Link>
+        <Link to="/books" className="nav-button">Books</Link>
+        <Link to="/categories" className="nav-button">Categories</Link>
+        <Link to="/students" className="nav-button">Students</Link>
+        <Link to="/lend" className="nav-button" >Lend</Link>
+        <Link to="/borrowed-books" className="nav-button">Borrowed Books</Link>
+        <Link to="/fees" className="nav-button">Fees</Link>
       </div>
       <div className="right-section">
         <img src={user ? user.profile_pic : defaultProfilePic} alt="Profile" />

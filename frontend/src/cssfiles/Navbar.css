@@ -14,10 +14,7 @@
     height: 40px;
   }
   
-  .profile-button,
-  .books-button,
-  .categories-button, 
-  .students-button {
+  .nav-button {
     color: #1d1e20;
     margin-left: 1rem;
     background: none;
@@ -36,10 +33,7 @@
   }
   
   
-  .profile-button:hover,
-  .books-button:hover, 
-  .students-button:hover, 
-  .categories-button:hover {    
+  .nav-button:hover {    
     color: #9bb6e0;
     transform: scale(1.1);
   }
