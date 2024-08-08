@@ -78,25 +78,23 @@ exports.lendBook = async (req, res) => {
   try {
     const { studentId, bookId } = req.body;
 
-    // ابحث عن الطالب واسترجع بيانات الاشتراك
     const student = await Student.findOne({ studentId }).populate('subscription');
     if (!student) {
       return res.status(404).send({ message: 'Student not found!' });
     }
 
-    // تحقق من حالة الدفع في الاشتراك
     const subscription = student.subscription;
     if (!subscription || subscription.paymentStatus !== 'paid') {
       return res.status(403).send({ message: 'Student must pay subscription fee to borrow books!' });
     }
 
-    // تحقق من توفر الكتاب
+
     const book = await Book.findById(bookId);
     if (!book || book.status !== 'available') {
       return res.status(400).send({ message: 'Book is not available!' });
     }
 
-    // قم بتحديث حالة الكتاب إلى "مستعار"
+
     book.status = 'borrowed';
     book.borrowedBy = student._id;
     book.borrowedDate = new Date();
@@ -191,6 +189,7 @@ exports.getBorrowedBooksByStudent = async (req, res) => {
 exports.getBorrowedBooks = async (req, res) => {
   try {
     const borrowedBooks = await Book.find({ status: 'borrowed' }).populate('category', 'name').populate('borrowedBy', 'name studentId');
+    console.log('Borrowed Books:', borrowedBooks);
     res.status(200).send(borrowedBooks);
   } catch (error) {
     res.status(500).send({ message: error.message });
